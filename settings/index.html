@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+    <head>
+        <script type="text/javascript" src="/manager/webserver/assets/js/jquery.js"></script>
+    </head>
+    <body>
+        <h1>Better voice</h1>
+        <p>If Homey understood you wrong, go to <a href="/manager/speech-input/" target="_blank">this page</a> and fill this word or sentence with the correct replacement below.</p>
+        
+        <h2>Settings</h2>
+        <p>Fill out the words and there replacements below (Example: nights - lights). Only complete combinations are stored (max 50 for now).</p>
+        <p><strong style="color: red">After saving you need to restart the app (Settings > Apps) for the changes to take effect!</strong></p>
+
+        <fieldset>
+            <legend>Word-list</legend>
+            
+            <button class="add_field_button">Add more fields</button><br>
+            <table class="input_fields_wrap">
+                <tr>
+                    <th>Input</th>
+                    <th>&nbsp;</th>
+                    <th>Replace</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </table>
+        </fieldset>
+        
+        <p style="display:none; color: green; text-align: right;" class="saved"> Settings saved, please restart the app...</p>
+        <button class="right" onclick="save()">Save changes</button>
+
+        <script type="text/javascript">
+        $(document).ready(function() {
+            var max_fields      = 50; //maximum input boxes allowed
+            var wrapper         = $(".input_fields_wrap"); //Fields wrapper
+            var add_button      = $(".add_field_button"); //Add button ID
+            
+            var x = 1; //initlal text box count
+            $(add_button).click(function(e){ //on add input button click
+                e.preventDefault();
+                if(x < max_fields){ //max input box allowed
+                    x++; //text box increment
+                    
+                    appendBoxes('', '');
+                }
+            });
+            
+            $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+                e.preventDefault(); $(this).parent().parent('tr').remove(); x--;
+            })
+        });
+        
+        function onHomeyReady(){
+            Homey.ready();
+            Homey.get('corrections', function(err, corrections){
+                if( err ) return console.error('Could not get corrections', err);
+                console.log('corrections: ', corrections);
+                var i = 0;
+                $.each(corrections, function( index, value ) {
+                    appendBoxes(index, value);
+                    i++;
+                });
+                
+                if (i == 0) {
+                    appendBoxes('', ''); // Always add one!
+                }
+            });
+        }
+        
+        function appendBoxes(val1, val2) {
+            $(".input_fields_wrap").append('<tr class="input_holder"><td><input class="input" type="text" value="'+val1+'" /></td><td>&nbsp;</td><td><input class="replace" type="text" value="'+val2+'" /></td><td>&nbsp;<a style="color:black;" href="#" class="remove_field">Remove</a></td></tr>'); //add input box   
+        }
+
+        function save() {
+            $('.saved').hide();
+            var corrections = {};
+
+            $.each($('.input_holder'), function( index, value ) {
+                var t_input = $(this).find('.input').val().trim();
+                var t_replace = $(this).find('.replace').val().trim();
+                
+                if (t_input && t_replace) {
+                    corrections[t_input] = t_replace;
+                }
+            });
+            console.log(corrections);
+            Homey.set('corrections', corrections);
+            setTimeout(function() { $('.saved').show(); }, 500);
+        }
+        </script>
+
+    </body>
+</html>

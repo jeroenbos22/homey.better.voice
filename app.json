@@ -1,0 +1,68 @@
+{
+  "id": "homey.better.voice",
+  "name": {
+    "en": "Better voice"
+  },
+  "version": "0.0.1",
+  "compatibility": ">=0.9",
+  "description": {
+    "en": "Correct Homey voice-commands by learning word replacements“
+  },
+  "category": "tools",
+  "images": {
+    "large": "assets/images/large.jpg",
+    "small": "assets/images/small.jpg"
+  },
+  "author": {
+    "name": "Jeroen Bos",
+    "email": "jeroenbos22@gmail.com"
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Jeroen Bos",
+        "email": "jeroenbos22@gmail.com"
+      }
+    ]
+  },
+  "flow": {
+        "triggers": [
+            {
+                "id": "better_voice_trigger",
+                "title": {
+                    "en": "Voice improvement detected",
+                    "nl": "Spraak verbetering gedetecteerd"
+                },
+                "tokens": [
+                    {
+                        "name": "corrected_sentence",
+                        "title": {
+                            "en": "Sentence",
+                            "nl": "Zin"
+                        }
+                    },
+                    {
+                        "name": "corrected_word",
+                        "title": {
+                            "en": "Word",
+                            "nl": "Woord"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+  "speech": [
+    {
+        "id": "better_voice_dummy",
+        "importance": 0.1,
+        "triggers": {
+            "en": [ "better_voice_dummy" ],
+            "nl": [ "better_voice_dummy" ]
+        }
+    }
+  ],
+  "permissions": [
+      "homey:manager:speech-input"
+  ]
+}
