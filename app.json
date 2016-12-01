@@ -6,7 +6,7 @@
   "version": "0.0.1",
   "compatibility": ">=0.9",
   "description": {
-    "en": "Correct Homey voice-commands by learning word replacements“
+    "en": "Correct Homey voice-commands by learning word replacements"
   },
   "category": "tools",
   "images": {
