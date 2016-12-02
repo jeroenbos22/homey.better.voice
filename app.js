@@ -32,8 +32,8 @@ Homey.manager('speech-input').on('speech', function(speech){
         replaced = speech.transcript.replace(trigger, corrections[trigger]);
         tokens = {'corrected_sentence': replaced, 'corrected_word': corrections[trigger] };
         
-        Homey.manager('flow').trigger('better_voice_trigger', tokens, null, function(err, result){
-            if( err ) return Homey.error(err);
+        Homey.manager('flow').trigger('better_voice_trigger', tokens, {session: speech.session}, function(err, result){
+              if( err ) return Homey.error(err);
         });
     }
 });
