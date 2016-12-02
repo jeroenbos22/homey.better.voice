@@ -5,17 +5,19 @@ var tokens, trigger, replaced, corrections = {};
 function init() {
     corrections = Homey.manager('settings').get('corrections');
     
-    Object.keys(corrections).forEach(function (key) {
-        Homey.manager('speech-input').addTrigger({
-            "id": "better-voice-"+key,
-            "importance": 1,
-            "triggers": {
-                "en": [ key ],
-                "nl": [ key ]
-            }
-        });
-        Homey.log("Trigger added for "+key);
-     });
+    if (typeof corrections === 'object') {
+        Object.keys(corrections).forEach(function (key) {
+            Homey.manager('speech-input').addTrigger({
+                "id": "better-voice-"+key,
+                "importance": 1,
+                "triggers": {
+                    "en": [ key ],
+                    "nl": [ key ]
+                }
+            });
+            Homey.log("Trigger added for "+key);
+         });   
+    }
 	
 	Homey.log("Homey Better Voice app ready!");
 	
