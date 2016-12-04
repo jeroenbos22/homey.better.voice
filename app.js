@@ -26,7 +26,7 @@ function init() {
     Homey.log("Homey Better Voice app ready!");
 }
 
-Homey.manager('settings').on( 'set', function(setting) {
+Homey.manager('settings').on('set', function (setting) {
     if (setting !== 'corrections') {
         return;
     }
