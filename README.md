@@ -7,6 +7,10 @@ Example, sometimes when you say "Lights on" and Homey understands "Nights on". U
 ![](http://i.imgur.com/eLmhQsr.png)
 
 
+V0.0.4:
+
+* Auto reload triggers after saving settings
+
 V0.0.3:
 
 * Bugfixes
