@@ -1,0 +1,13 @@
+{
+    "settings": {
+        "intro": "Als Homey je verkeerd heeft begrepen, gebruik onderstaande link (enkel via browser) of ga naar [JOU HOMEY IP]/manager/speech-input/ en vul de foutieve woorden of zinnen met hun verbetering hieronder in.",
+        "link": "Link naar speech-input manager",
+        "settings_title": "Instellingen",
+        "combinations_intro" : "Sta (maximaal 3) combinaties toe door het woord EN te gebruiken in je zin. Voorbeeld: Zet de lampen aan EN zet het alarm aan",
+        "combinations_checkbox" : "Combinaties inschakelen",
+        "settings_intro": "Voer de foutieve woorden en hun verbetering hier in (Voorbeeld: dampen - lampen). Alleen complete combinaties worden opgeslagen (max 50 voor nu).",
+        "add_fields_button": "Voeg meer velden toe",
+        "save": "Opslaan",
+        "saved": "Succesvol opgeslagen"
+    }
+}

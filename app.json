@@ -3,7 +3,7 @@
   "name": {
     "en": "Better voice"
   },
-  "version": "0.0.4",
+  "version": "0.0.5",
   "compatibility": ">=0.9",
   "description": {
     "en": "Correct Homey voice-commands by learning word replacements"
@@ -46,6 +46,36 @@
                         "title": {
                             "en": "Word",
                             "nl": "Woord"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "better_voice_combine",
+                "title": {
+                    "en": "Speech-combine detected",
+                    "nl": "Spraak-combinatie gedetecteerd"
+                },
+                "tokens": [
+                    {
+                        "name": "combine_1",
+                        "title": {
+                            "en": "1st",
+                            "nl": "1e"
+                        }
+                    },
+                    {
+                        "name": "combine_2",
+                        "title": {
+                            "en": "2nd",
+                            "nl": "2e"
+                        }
+                    },
+                    {
+                        "name": "combine_3",
+                        "title": {
+                            "en": "3th",
+                            "nl": "3e"
                         }
                     }
                 ]

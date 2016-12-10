@@ -1,0 +1,13 @@
+{
+    "settings": {
+        "intro": "If Homey understood you wrong, use the link below (browser only) or go to [YOUR HOMEY IP]/manager/speech-input/ and fill the misunderstood words or sentences with the correct replacements below.",
+        "link": "Link to speech-input manager",
+        "settings_title": "Settings",
+        "combinations_intro" : "Allow (max 3) combinations to be made by using the word AND in your sentence. Example: Turn off lights AND turn on the alarm",
+        "combinations_checkbox" : "Use combinations",
+        "settings_intro": "Fill out the words and their replacements below (Example: nights - lights). Only complete combinations are stored (max 50 for now).",
+        "add_fields_button": "Add more fields",
+        "save": "Save changes",
+        "saved": "Settings saved"
+    }
+}

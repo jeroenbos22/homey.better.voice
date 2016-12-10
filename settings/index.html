@@ -5,15 +5,25 @@
     </head>
     <body>
         <h1>Better voice</h1>
-        <p>If Homey understood you wrong, go to <a href="/manager/speech-input/" target="_blank">this page</a> and fill this word or sentence with the correct replacement below.</p>
+        <p data-i18n="settings.intro"></p>
         
-        <h2>Settings</h2>
-        <p>Fill out the words and their replacements below (Example: nights - lights). Only complete combinations are stored (max 50 for now).</p>
+        <p>
+            <a href="/manager/speech-input/" target="_blank" data-i18n="settings.link"></a>
+        </p>
+        
+        <h2 data-i18n="settings.settings_title"></h2>
+        
+        <p data-i18n="settings.combinations_intro"></p>
+        <p>
+            <input id="combine_checkbox" type="checkbox" name="use_combine" value="1"> <span data-i18n="settings.combinations_checkbox"></span><br>
+        </p>
+        
+        <p data-i18n="settings.settings_intro"></p>
 
         <fieldset>
             <legend>Word-list</legend>
             
-            <button class="add_field_button">Add more fields</button><br>
+            <button class="add_field_button" data-i18n="settings.add_fields_button"></button><br>
             <table class="input_fields_wrap">
                 <tr>
                     <th>Input</th>
@@ -24,8 +34,8 @@
             </table>
         </fieldset>
         
-        <p style="display:none; color: green; text-align: right;" class="saved">Settings saved</p>
-        <button class="right" onclick="save()">Save changes</button>
+        <p style="display:none; color: green; text-align: right;" class="saved" data-i18n="settings.saved"></p>
+        <button class="right" onclick="save()" data-i18n="settings.save"></button>
 
         <script type="text/javascript">
         $(document).ready(function() {
@@ -50,6 +60,12 @@
         
         function onHomeyReady(){
             Homey.ready();
+            Homey.get('combinations', function(err, combinations){
+                if( err ) return console.error('Could not get combinations', err);
+                if (combinations == 1) {
+                    $('#combine_checkbox').attr('checked', true);
+                }
+            });
             Homey.get('corrections', function(err, corrections){
                 if( err ) return console.error('Could not get corrections', err);
                 console.log('corrections: ', corrections);
@@ -82,6 +98,7 @@
                 }
             });
             console.log(corrections);
+            Homey.set('combinations', $('#combine_checkbox:checked').length);
             Homey.set('corrections', corrections);
             setTimeout(function() { $('.saved').show(); }, 500);
         }
