@@ -56,7 +56,7 @@ Homey.manager('speech-input').on('speech', function (speech) {
         tokens = {'corrected_sentence': replaced, 'corrected_word': corrections[trigger]};
         
         // Check if and persists, if so skip replace and take it to the next trigger
-        if (replaced.indexOf(' and ') === -1 && replaced.indexOf(' en ') === -1) {
+        if ((replaced.indexOf(' and ') === -1 && replaced.indexOf(' en ') === -1) || Homey.manager('settings').get('combinations') != 1) {
             Homey.manager('flow').trigger('better_voice_trigger', tokens, {session: speech.session}, function (err, result) {
                 if (err) return Homey.error(err);
                 Homey.log('Trigger ' + trigger + ' executed');
@@ -66,7 +66,7 @@ Homey.manager('speech-input').on('speech', function (speech) {
         replaced = speech.transcript;
     }
     
-    if (typeof trigger === 'string' && ((trigger === "and" || trigger === "en") || (replaced.indexOf(' and ') !== -1 || replaced.indexOf(' en ') !== -1))) {
+    if (Homey.manager('settings').get('combinations') == 1 && typeof trigger === 'string' && ((trigger === "and" || trigger === "en") || (replaced.indexOf(' and ') !== -1 || replaced.indexOf(' en ') !== -1))) {
         if (Homey.manager('i18n').getLanguage() == 'nl') {
             combine_array = replaced.split(" en ",3); // If ducth find " en "
         } else {
@@ -74,7 +74,7 @@ Homey.manager('speech-input').on('speech', function (speech) {
         }
         
         for (var key in combine_array) {
-            combine_array[key] = combine_array[key].replace('and',' ').replace('en',' ').trim();
+            combine_array[key] = combine_array[key].replace(' and ',' ').replace(' en ',' ').trim();
         }
         
         tokens = {'combine_1': combine_array[0], 'combine_2': combine_array[1], 'combine_3': combine_array[2]};
