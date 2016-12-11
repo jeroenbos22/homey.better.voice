@@ -52,19 +52,21 @@ Homey.manager('speech-input').on('speech', function (speech) {
     trigger = speech.triggers[0].text;
     Homey.log('Trigger ' + trigger + ' detected');
     if (typeof trigger === 'string' && (trigger in corrections)) {
-        Homey.log('Trigger ' + trigger + ' executed');
-
         replaced = speech.transcript.replace(trigger, corrections[trigger]);
         tokens = {'corrected_sentence': replaced, 'corrected_word': corrections[trigger]};
-
-        Homey.manager('flow').trigger('better_voice_trigger', tokens, {session: speech.session}, function (err, result) {
-            if (err) return Homey.error(err);
-        });
+        
+        // Check if and persists, if so skip replace and take it to the next trigger
+        if (replaced.indexOf(' and ') === -1 && replaced.indexOf(' en ') === -1) {
+            Homey.manager('flow').trigger('better_voice_trigger', tokens, {session: speech.session}, function (err, result) {
+                if (err) return Homey.error(err);
+                Homey.log('Trigger ' + trigger + ' executed');
+            });    
+        }
     } else {
         replaced = speech.transcript;
     }
     
-    if (typeof trigger === 'string' && (trigger === "and" || trigger === "en")) {
+    if (typeof trigger === 'string' && ((trigger === "and" || trigger === "en") || (replaced.indexOf(' and ') !== -1 || replaced.indexOf(' en ') !== -1))) {
         if (Homey.manager('i18n').getLanguage() == 'nl') {
             combine_array = replaced.split(" en ",3); // If ducth find " en "
         } else {
@@ -81,6 +83,7 @@ Homey.manager('speech-input').on('speech', function (speech) {
 
         Homey.manager('flow').trigger('better_voice_combine', tokens, {session: speech.session}, function (err, result) {
             if (err) return Homey.error(err);
+            Homey.log('Combine executed');
         });
         
         

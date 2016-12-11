@@ -1,6 +1,6 @@
 # Better Voice
         
-This app let's you correct words that Homey understood wrong using voice and you can combine speech command with "AND" (or "EN" for dutch) in your sentence.
+This app let's you correct words that Homey understood wrong using voice and you can combine speech commands with "AND" (or "EN" for dutch) in your sentence.
 
 Example, sometimes when you say "Lights on" and Homey understands "Nights on". Using this app you can auto-correct that and re-emulate the complete sentence in a flow (see image below). You can even ask Homey for a confirmation if you don't want it to be auto-executed.
 
