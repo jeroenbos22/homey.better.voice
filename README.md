@@ -10,6 +10,11 @@ In order to let the combined speech-commands work you need to have a flow like:
 ![](http://i.imgur.com/QCt25SE.png)
 
 
+**If you like this app, then consider to buy me a coffee :)**
+
+[![](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UZH3D63ZYVJ2J)
+
+
 V0.0.5:
 
 * Added dutch translation and combined speech-commands

@@ -37,7 +37,6 @@ function setupTriggers() {
 
 function init() {
     setupTriggers();
-
     Homey.log("Homey Better Voice app ready!");
 }
 
@@ -78,15 +77,11 @@ Homey.manager('speech-input').on('speech', function (speech) {
         }
         
         tokens = {'combine_1': combine_array[0], 'combine_2': combine_array[1], 'combine_3': combine_array[2]};
-        
         Homey.log(tokens);
-
         Homey.manager('flow').trigger('better_voice_combine', tokens, {session: speech.session}, function (err, result) {
             if (err) return Homey.error(err);
             Homey.log('Combine executed');
         });
-        
-        
     }
 });
 

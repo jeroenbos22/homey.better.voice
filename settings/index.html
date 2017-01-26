@@ -6,23 +6,15 @@
     <body>
         <h1>Better voice</h1>
         <p data-i18n="settings.intro"></p>
-        
-        <p>
-            <a href="/manager/speech-input/" target="_blank" data-i18n="settings.link"></a>
-        </p>
+        <p><a href="/manager/speech-input/" target="_blank" data-i18n="settings.link"></a></p>
         
         <h2 data-i18n="settings.settings_title"></h2>
-        
         <p data-i18n="settings.combinations_intro"></p>
-        <p>
-            <input id="combine_checkbox" type="checkbox" name="use_combine" value="1"> <span data-i18n="settings.combinations_checkbox"></span><br>
-        </p>
-        
+        <p><input id="combine_checkbox" type="checkbox" name="use_combine" value="1"> <span data-i18n="settings.combinations_checkbox"></span><br></p>
         <p data-i18n="settings.settings_intro"></p>
 
         <fieldset>
             <legend>Word-list</legend>
-            
             <button class="add_field_button" data-i18n="settings.add_fields_button"></button><br>
             <table class="input_fields_wrap">
                 <tr>
@@ -35,8 +27,7 @@
         </fieldset>
         
         <p style="display:none; color: green; text-align: right;" class="saved" data-i18n="settings.saved"></p>
-        <button class="right" onclick="save()" data-i18n="settings.save"></button>
-
+        <button class="right" onclick="save();" data-i18n="settings.save"></button>
         <script type="text/javascript">
         $(document).ready(function() {
             var max_fields      = 50; //maximum input boxes allowed
@@ -55,7 +46,7 @@
             
             $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
                 e.preventDefault(); $(this).parent().parent('tr').remove(); x--;
-            })
+            });
         });
         
         function onHomeyReady(){
@@ -75,7 +66,7 @@
                     i++;
                 });
                 
-                if (i == 0) {
+                if (i === 0) {
                     appendBoxes('', ''); // Always add one!
                 }
             });
@@ -103,6 +94,5 @@
             setTimeout(function() { $('.saved').show(); }, 500);
         }
         </script>
-
     </body>
 </html>

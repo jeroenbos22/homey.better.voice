@@ -3,7 +3,7 @@
   "name": {
     "en": "Better voice"
   },
-  "version": "0.0.5",
+  "version": "0.0.6",
   "compatibility": ">=0.9",
   "description": {
     "en": "Correct Homey voice-commands by learning word replacements"
